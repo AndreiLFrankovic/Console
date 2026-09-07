@@ -4,6 +4,9 @@ public class RockPaperScissors {
     static int scoreComputer = 0;
     static int scorePlayer2 = 0;
     static int scoreTie = 0;
+    static int PlayerStreak = 0;
+    static int Player2Streak = 0;
+
     public static void addPlayerPoint() 
     {
         scorePlayer++;
@@ -21,7 +24,7 @@ public class RockPaperScissors {
         scorePlayer2 ++;
     }
 
-     public static void main(String[] args) {
+    public static void main(String[] args) {
        Menu();
        
        
@@ -66,10 +69,41 @@ public class RockPaperScissors {
         else if (choice == 7) 
         {
             System.out.println("Reset Scores");
+            System.out.println("Are you sure you want to reset the scores? (yes/no)");
+            if (checking.next().equalsIgnoreCase("yes")) 
+            {
+                System.out.println("Scores have been reset.");
+            } 
+            else if (checking.next().equalsIgnoreCase("no")) 
+            {
+                System.out.println("Scores have not been reset.");
+                Menu();
+            } 
+            else 
+            {
+                System.out.println("Invalid input. Scores have not been reset.");
+                Menu();
+            }
             scorePlayer = 0;
             scoreComputer = 0;
             scoreTie = 0;
-            Menu();
+             String returnToMenu = checking.next();
+            if (returnToMenu.equalsIgnoreCase("yes"))
+            {
+                Menu();
+            }
+            else if (returnToMenu.equalsIgnoreCase("no"))
+            {
+                System.out.println("");
+                checking.close();
+                System.exit(0);
+                
+            }
+            else
+            {
+                System.out.println("Invalid input.");
+                System.out.println("Return to menu? (yes/no)");
+            }
         }
         else if (choice == 3)
         {
@@ -118,17 +152,33 @@ public class RockPaperScissors {
             {
                 System.out.println("");
                 checking.close();
-                System.exit(0);
-                
+              
+                Menu();
             }
             else
             {
                 System.out.println("Invalid input.");
                 System.out.println("Return to menu? (yes/no)");
+                if (returnToMenu.equalsIgnoreCase("yes"))
+                {
+                    Menu();
+                }
+                else if (returnToMenu.equalsIgnoreCase("no"))
+                {
+                    System.out.println("");
+                    checking.close();
+                    Menu();
+                    
+                }
+                else
+                {
+                    System.out.println("Invalid input.");
+                    System.out.println("Return to menu? (yes/no)");
             }
             
             
         }
+    }
         else if (choice == 9)
         {
             System.out.println("Stats Menu");
@@ -145,8 +195,7 @@ public class RockPaperScissors {
             {
                 System.out.println("");
                 checking.close();
-                System.exit(0);
-                
+                Menu();
             }
             else
             {
