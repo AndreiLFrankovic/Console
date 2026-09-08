@@ -1,5 +1,6 @@
-//*  fixed the score issue with Player 2, Decided to scrap winning streaks. Cleaned and de-bugged code.
-//      to do, finished    */
+//* Andrei Frakovic     */
+//* Rock, Paper, Scissors     */
+//*                      */
 import java.util.Scanner;
 public class RockPaperScissors {
     static int scorePlayer = 0;
@@ -163,7 +164,7 @@ public class RockPaperScissors {
             System.out.println("Computer Wins: " + scoreComputer);
             System.out.println("Ties: " + scoreTie);
             System.out.println("Player 2 Wins: " + scorePlayer2);
-            System.out.println("Return to menu? (yes/no)");
+            System.out.println("Return to menu? (Yes/No?)");
             String returnToMenu = checking.next();
             if (returnToMenu.equalsIgnoreCase("yes"))
             {
@@ -178,7 +179,7 @@ public class RockPaperScissors {
             else
             {
                 System.out.println("Invalid input.");
-                System.out.println("Return to menu? (yes/no)");
+                System.out.println("Return to menu? (Yes/No?)");
             }
         }
         else 
@@ -681,7 +682,7 @@ public class RockPaperScissors {
         System.out.println("||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
         System.out.println("||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
         System.out.println("||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
-        System.out.println("||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
+        System.out.println("||||||||||||||||||||||||||||||||||||||||||||||||||||||||||Easter|Egg||||||||||||||");
         System.out.println("||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
         System.out.println("||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
         System.out.println("||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
