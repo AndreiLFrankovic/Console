@@ -97,6 +97,7 @@ public class RockPaperScissors {
                     player1.ties = 0;
                     player1.compscore = 0;
                     player1.simplayer = 0;
+                    
 
 
             } 
@@ -229,7 +230,7 @@ public class RockPaperScissors {
             DrawVSBasic();
             if (randomcompNumber == 1) 
             {
-                System.out.println("" + this.name);
+                
                
                 System.out.println("  Computer   ");
                 DrawRockBasic();
