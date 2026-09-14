@@ -2,6 +2,7 @@
 //* Project Name:
 // Purpose:
 // Pseudocode, English explanation of code:*/
+//This is the new version of the code, refer to this one instead of the deleted one
 import java.util.ArrayList;
 import java.util.Scanner;
 public class RockPaperScissors {
