@@ -1,7 +1,7 @@
 package RockPaperScissors;
 //* Andrei Frankovic     */
 //* Rock, Paper, Scissors     */
-//*                 t]   */
+//*         */
 import java.util.ArrayList;
 import java.util.Scanner;
 public class RockPaperScissors {
