@@ -1,15 +1,41 @@
 package RockPaperScissors;
-//* Andrei Frankovic     */
-//* Rock, Paper, Scissors     */
-//*         */
+//Andrei Frankovic 
+//Rock, Paper, Scissors 
+
+ //Project Oveview
+ 
+ //This program is a Rock, Paper, Scissors game. It has
+ // simmulation runds, rounds where a person plays against the
+ // compter, and rounds where two peple play against each other. The mnu
+ //has all of these opions for one rond or mltiple rounds, resetting scores,
+ //help, and vieing score. Text-art draings of rock, aper, and scissrs are printed.
+
+ 
+ // How it Wrks
+// The menu lets you choose a simulation, play against the computer, play with
+// another person, reset scres, get help, or view scores.
+//
+// In each round, rock beats scissors, scissors beats paper, and paper beats
+// rock. Mathes tie. Simulatins chooe moves autom the other
+// modes ask players to choose. Scores update after each round.
+//
+// PlayerData stores player scores and statisics while the program runs. The
+// drawing methods print the game artwork.
+// How te scanner works Scanner rads
+    //  static lets evertyhing use this Scanner
+    // final makes it so it can be changed. 
+    // the list stores al of the data and it tracks the variabes andit will ten store the data and set the numers to 0
 import java.util.ArrayList;
 import java.util.Scanner;
 public class RockPaperScissors {
     
-   
+    private static final Scanner checking = new Scanner(System.in);
+    
+    
   
     public static class PlayerData
-     {
+      {
+        
        
         String soemthing;
         
@@ -28,14 +54,14 @@ public class RockPaperScissors {
 
     public PlayerData (String soemthing)
     {
-       
+        
         this.soemthing = soemthing;
        
         this.score = 0;
         this.wins = 0;
         this.losses = 0;
         this.ties = 0;
-        
+       
         this.compscore = 0;
         this.simplayer = 0;
     }
@@ -46,7 +72,9 @@ public class RockPaperScissors {
     public static void main(String[] args) {
 
 
-
+        DrawRockBasic();
+        DrawScissorsBasic();
+        DrawPaperBasic();
         Menu();
      }
     
@@ -56,9 +84,6 @@ public class RockPaperScissors {
    
         
         System.out.println("Welcome to Rock Paper Scissors!");
-        DrawRockBasic();
-        DrawPaperBasic();
-        DrawScissorsBasic();
         System.out.println("Press 1 to play 1 round of simulation mode");
         System.out.println("Press 2 to play multiple rounds of simulation mode ");
         System.out.println("Press 3 to play 1v1 Computer mode");
@@ -70,12 +95,11 @@ public class RockPaperScissors {
         System.out.println("Press 9 for stats");
 
 
-        Scanner checking = new Scanner(System.in);
-        
         int choice = checking.nextInt();
         if (choice == 1) 
         {
             PlayGame();
+           
             Menu();
         } 
         else if (choice == 2) 
@@ -94,19 +118,19 @@ public class RockPaperScissors {
         {
             System.out.println("Reset Scores");
             System.out.println("Are you sure you want to reset the scores? (yes/no)");
-            if (checking.next().equalsIgnoreCase("yes")) 
+            String resetChoice = checking.next();
+            if (resetChoice.equalsIgnoreCase("yes")) 
             {
+                player1.score = 0;
+                player2.score = 0;
+                player1.ties = 0;
+                player1.compscore = 0;
+                player1.simplayer = 0;
                 System.out.println("Scores have been reset.");
                 Menu();
-                    player1.score = 0;
-                    player2.score = 0;
-                    player1.ties = 0;
-                    player1.compscore = 0;
-                    player1.simplayer = 0;
-
 
             } 
-            else if (checking.next().equalsIgnoreCase("no")) 
+            else if (resetChoice.equalsIgnoreCase("no")) 
             {
                 System.out.println("Scores have not been reset.");
                 Menu();
@@ -122,6 +146,7 @@ public class RockPaperScissors {
         else if (choice == 3)
         {
             PlayGameRPSC();
+            Menu();
 
         }
         else if (choice == 4)
@@ -132,6 +157,7 @@ public class RockPaperScissors {
             {
                 PlayGameRPSC();
             }
+            Menu();
         }
         else if (choice == 6)
         {
@@ -141,10 +167,12 @@ public class RockPaperScissors {
             {
                 PlayGame1v1();
             }
+            ReturnToMenuPrompt();
         }
         else if (choice == 5)
         {
             PlayGame1v1();
+            ReturnToMenuPrompt();
         }
         else if (choice == 8)
         {
@@ -165,9 +193,6 @@ public class RockPaperScissors {
             else if (returnToMenu.equalsIgnoreCase("no"))
             {
                 System.out.println("");
-                checking.close();
-              
-                Menu();
             }
             else
             {
@@ -200,8 +225,6 @@ public class RockPaperScissors {
             else if (returnToMenu.equalsIgnoreCase("no"))
             {
                 System.out.println("");
-                checking.close();
-                Menu();
             }
             else
             {
@@ -212,162 +235,121 @@ public class RockPaperScissors {
         else 
         {
             System.out.println("Invalid choice. Please try again.");
-            checking.close();
             Menu();
         }
        
 
     }   
+
+    private static void ReturnToMenuPrompt()
+    {
+        while (true)
+        {
+            System.out.println("Return to menu? (yes/no)");
+            String answer = checking.next();
+            if (answer.equalsIgnoreCase("yes"))
+            {
+                Menu();
+                return;
+            }
+            if (answer.equalsIgnoreCase("no"))
+            {
+                return;
+            }
+            System.out.println("Invalid input. Please enter yes or no.");
+        }
+    }
+
     public static void PlayGameRPSC()
     {
-        
-        int randomcompNumber = (int) (Math.random() * 3)+1;
-        Scanner checking = new Scanner(System.in);
-        System.out.println(" Rock, Paper, or Scissors? ");
+        int randomcompNumber = (int) (Math.random() * 3) + 1;
+        System.out.println("Rock, Paper, or Scissors?");
         String word = checking.next();
-        if (word.equalsIgnoreCase("rock")) 
-        
-        
-            {
-            DrawRockBasic();
-            DrawVSBasic();
-            if (randomcompNumber == 1) 
-            {
-                System.out.println("  Computer   ");
-                DrawRockBasic();
-                System.out.println("Computer chose Rock. It's a tie!");
-                player1.ties++;
-                System.out.println("Ties: " + player1.ties);
-                System.out.println("Computer Wins: " + player1.compscore);
-                System.out.println("Player Wins: " + player1.score);
-                Menu();
 
-            }
-            else if (randomcompNumber == 2) 
-            {
-                System.out.println("  Computer   ");
-                DrawPaperBasic();
-
-                System.out.println("Computer chose Paper. Computer wins!");
-                player1.compscore++;
-                System.out.println("Computer Wins: " + player1.compscore);
-                System.out.println("Player Wins: " + player1.score);
-                System.out.println("Ties: " + player1.ties);
-                Menu();
-            } 
-            else if (randomcompNumber == 3) 
-            {
-                System.out.println("  Computer   ");
-                DrawScissorsBasic();
-                System.out.println("Computer chose Scissors. Player wins!");
-                
-                System.out.println("Player Wins: " + player1.score);
-                System.out.println("Computer Wins: " + player1.compscore);
-                System.out.println("Ties: " + player1.ties);
-                Menu();
-            }
-        } 
-        else if (word.equalsIgnoreCase("paper")) 
+        while (!word.equalsIgnoreCase("rock")
+                && !word.equalsIgnoreCase("paper")
+                && !word.equalsIgnoreCase("scissors"))
         {
-            DrawPaperBasic();
-            DrawVSBasic();
-            if (randomcompNumber == 1) 
-            {
-
-                System.out.println("  Computer   ");
-                DrawRockBasic();
-                System.out.println("Computer chose Rock. Player wins!");
-                player1.score++;
-                System.out.println("Player Wins: " + player1.score);
-                System.out.println("Computer Wins: " + player1.compscore);
-                System.out.println("Ties: " + player1.ties);
-                Menu();
-            } 
-            else if (randomcompNumber == 2) 
-            {
-
-                System.out.println("  Computer   ");
-                DrawPaperBasic();
-                System.out.println("Computer chose Paper. It's a tie!");
-                player1.ties++;
-                System.out.println("Ties: " + player1.ties);
-                System.out.println("Computer Wins: " + player1.compscore);
-                System.out.println("Player Wins: " + player1.score);
-                Menu();
-            } 
-            else if (randomcompNumber == 3) 
-            {
-                DrawScissorsBasic();    
-                System.out.println("  Computer   ");
-                System.out.println("Computer chose Scissors. Computer wins!");
-                player1.compscore++;
-                System.out.println("Computer Wins: " + player1.compscore);
-                System.out.println("Player Wins: " + player1.score);
-                System.out.println("Ties: " + player1.ties);
-                Menu();
-            }
-        } 
-        else if (word.equalsIgnoreCase("scissors")) 
-        {
-            DrawScissorsBasic();
-            DrawVSBasic();
-            if (randomcompNumber == 1) 
-            {
-
-                System.out.println("  Computer   ");
-                DrawRockBasic();
-                System.out.println("Computer chose Rock. Computer wins!");
-                player1.compscore++;
-                System.out.println("Computer Wins: " + player1.score);
-                System.out.println("Player Wins: " + player1.compscore);
-                System.out.println("Ties: " + player1.ties);
-                Menu();
-            } 
-            else if (randomcompNumber == 2) 
-            {
-                System.out.println("  Computer   ");
-                DrawPaperBasic();
-                System.out.println("Computer chose Paper. Player wins!");
-                player1.score++;
-                System.out.println("Player Wins: " + player1.score);
-                System.out.println("Computer Wins: " + player1.compscore);
-                System.out.println("Ties: " + player1.ties);
-                Menu();
-            } 
-            else if (randomcompNumber == 3) 
-            {
-                System.out.println("  Computer   ");
-                DrawScissorsBasic();
-                System.out.println("Computer chose Scissors. It's a tie!");
-                player1.ties++;
-                System.out.println("Ties: " + player1.ties);
-                System.out.println("Computer Wins: " + player1.compscore);
-                System.out.println("Player Wins: " + player1.score);
-                Menu();
-            }
-        } 
-        else 
-        {
-            System.out.println("Invalid input. Please try again.");
-            
-            PlayGameRPSC();
-            checking.close();
-            
-            
-            
-
-  
+            System.out.println("Invalid input. Please enter rock, paper, or scissors.");
+            word = checking.next();
         }
 
+        if (word.equalsIgnoreCase("rock"))
+        {
+            DrawRockBasic();
+        }
+        else if (word.equalsIgnoreCase("paper"))
+        {
+            DrawPaperBasic();
+        }
+        else
+        {
+            DrawScissorsBasic();
+        }
+
+        DrawVSBasic();
+        System.out.println("Computer");
+        if (randomcompNumber == 1)
+        {
+            DrawRockBasic();
+            System.out.println("Computer chose Rock.");
+        }
+        else if (randomcompNumber == 2)
+        {
+            DrawPaperBasic();
+            System.out.println("Computer chose Paper.");
+        }
+        else
+        {
+            DrawScissorsBasic();
+            System.out.println("Computer chose Scissors.");
+        }
+
+        int playerNumber = word.equalsIgnoreCase("rock") ? 1
+                : word.equalsIgnoreCase("paper") ? 2 : 3;
+        if (playerNumber == randomcompNumber)
+        {
+            System.out.println("It's a tie!");
+            player1.ties++;
+        }
+        else if ((playerNumber == 1 && randomcompNumber == 3)
+                || (playerNumber == 2 && randomcompNumber == 1)
+                || (playerNumber == 3 && randomcompNumber == 2))
+        {
+            System.out.println("Player wins!");
+            player1.score++;
+        }
+        else
+        {
+            System.out.println("Computer wins!");
+            player1.compscore++;
+        }
+
+        System.out.println("Player Wins: " + player1.score);
+        System.out.println("Computer Wins: " + player1.compscore);
+        System.out.println("Ties: " + player1.ties);
     }
     public static void PlayGame1v1()
     {
-        Scanner checking = new Scanner(System.in);
         System.out.println(" Rock, Paper, or Scissors? ");
         String P1word = checking.next();
+        while (!P1word.equalsIgnoreCase("rock")
+                && !P1word.equalsIgnoreCase("paper")
+                && !P1word.equalsIgnoreCase("scissors"))
+        {
+            System.out.println("Invalid input. Please enter rock, paper, or scissors.");
+            P1word = checking.next();
+        }
         DrawBarrier();
         System.out.println(" Rock, Paper, or Scissors? ");
         String P2word = checking.next(); 
+        while (!P2word.equalsIgnoreCase("rock")
+                && !P2word.equalsIgnoreCase("paper")
+                && !P2word.equalsIgnoreCase("scissors"))
+        {
+            System.out.println("Invalid input. Please enter rock, paper, or scissors.");
+            P2word = checking.next();
+        }
         
         if (P1word.equalsIgnoreCase("rock") && P2word.equalsIgnoreCase("rock")) 
         {
@@ -500,9 +482,7 @@ public class RockPaperScissors {
         }
         else 
         {
-            System.out.println("Invalid input/s. Match is restarting. Please try again.");
-            PlayGame1v1();
-            checking.close();
+            // Both inputs are validated before the round.
         }
 
         
