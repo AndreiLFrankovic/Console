@@ -7,31 +7,44 @@ import java.util.Scanner;
 public class RockPaperScissors {
     
    
+  
     public static class PlayerData
      {
+       
         String soemthing;
+        
         int score;
+       
         int wins;
+    
         int losses;
+        
         int ties;
+        
         int compscore;
+       
         int simplayer;
+
+
     public PlayerData (String soemthing)
     {
+       
         this.soemthing = soemthing;
+       
         this.score = 0;
         this.wins = 0;
         this.losses = 0;
         this.ties = 0;
+        
         this.compscore = 0;
         this.simplayer = 0;
     }
 }
     static ArrayList<PlayerData> Variables = new ArrayList<PlayerData>();
-    static PlayerData player1;
-    static PlayerData player2;
+    static PlayerData player1 = new PlayerData("Player 1");
+    static PlayerData player2 = new PlayerData("Player 2");
     public static void main(String[] args) {
-     
+
 
 
         Menu();
@@ -63,6 +76,7 @@ public class RockPaperScissors {
         if (choice == 1) 
         {
             PlayGame();
+            Menu();
         } 
         else if (choice == 2) 
         {
@@ -71,7 +85,10 @@ public class RockPaperScissors {
             for (int i = 0; i < rounds; i++) 
             {
                 PlayGame();
+
+             
             }
+            Menu();
         } 
         else if (choice == 7) 
         {
@@ -542,7 +559,6 @@ public class RockPaperScissors {
                     System.out.println("Computer Wins: " + player1.compscore);
                     System.out.println("Player Wins: " + player1.score);
                     System.out.println("Ties: " + player1.ties);
-                   
                 }
 
 
@@ -555,7 +571,6 @@ public class RockPaperScissors {
                     System.out.println("Player Wins: " + player1.score);
                     System.out.println("Computer Wins: " + player1.compscore);
                     System.out.println("Ties: " + player1.ties);
-                   
                 }
         } 
 
@@ -572,7 +587,6 @@ public class RockPaperScissors {
                     System.out.println("Ties: " + player1.ties);
                     System.out.println("Computer Wins: " + player1.compscore);
                     System.out.println("Player Wins: " + player1.score);
-                    Menu();
                
                 }
 
@@ -586,7 +600,6 @@ public class RockPaperScissors {
                     System.out.println("Player Wins: " + player1.score);
                     System.out.println("Ties: " + player1.ties);
 
-
                 }
 
             if (randomcomputerNumber == 1 && randomplayerNumber == 2) 
@@ -598,7 +611,6 @@ public class RockPaperScissors {
                     System.out.println("Player Wins: " + player1.score);
                     System.out.println("Computer Wins: " + player1.compscore);
                     System.out.println("Ties: " + player1.ties);
-
                 }
         } 
 
@@ -615,7 +627,6 @@ public class RockPaperScissors {
                     System.out.println("Ties: " + player1.ties);
                     System.out.println("Computer Wins: " + player1.compscore);
                     System.out.println("Player Wins: " + player1.score);
-             
                 }
 
             if (randomcomputerNumber == 1 && randomplayerNumber == 3) 
@@ -627,7 +638,6 @@ public class RockPaperScissors {
                     System.out.println("Computer Wins: " + player1.compscore);
                     System.out.println("Player Wins: " + player1.score);
                     System.out.println("Ties: " + player1.ties);
-
                 }
 
             if (randomcomputerNumber == 2 && randomplayerNumber == 3) 
@@ -638,7 +648,6 @@ public class RockPaperScissors {
                     System.out.println("Player Wins: " + player1.score);
                     System.out.println("Computer Wins: " + player1.compscore);
                     System.out.println("Ties: " + player1.ties);
-
                 }
         
         
