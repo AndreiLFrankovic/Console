@@ -8,12 +8,10 @@ import java.util.Scanner;
 
 public class Hangman
 {
-	private static final String[] FALLBACK_WORDS = {
-		"apple", "banana", "orange", "grape", "planet", "computer", "keyboard", "library", "school", "hangman"
-	};
-	private static final String[] WORDS = loadWords();
-	private static final int MAX_MISTAKES = 6;
-	private static final String[] DRAWINGS = {
+	
+	private static final String[] Words = loadWords();
+	private static final int Mistakes = 6;
+	private static final String[] Drawings = {
 		"", " O", " O\n |", " O\n/|", " O\n/|\\", " O\n/|\\\n/", " O\n/|\\\n/ \\"
 	};
 
@@ -64,15 +62,6 @@ public class Hangman
 		{
 			System.out.println("Error loading words from file. Looked for: " + wordFile.getAbsolutePath());
 		}
-
-		if (words.isEmpty())
-		{
-			System.out.println("No words found. Using built-in fallback words.");
-			for (String word : FALLBACK_WORDS)
-			{
-				words.add(word);
-			}
-		}
 		return words.toArray(new String[0]);
 	}
 
@@ -96,13 +85,13 @@ public class Hangman
 
 	private static void playRound(Scanner scanner, Random random)
 	{
-		if (WORDS.length == 0)
+		if (Words.length == 0)
 		{
 			System.out.println("No words available to play.");
 			return;
 		}
 
-		String word = WORDS[random.nextInt(WORDS.length)];
+		String word = Words[random.nextInt(Words.length)];
 		String guessedWord = "";
 		for (int i = 0; i < word.length(); i++)
 		{
@@ -111,7 +100,7 @@ public class Hangman
 		String guessedLetters = "";
 		int mistakes = 0;
 
-		while (mistakes < MAX_MISTAKES && !word.equals(guessedWord))
+		while (mistakes < Mistakes && !word.equals(guessedWord))
 		{
 			printGameState(guessedWord, mistakes);
 			System.out.print("Guess a letter: ");
@@ -155,7 +144,7 @@ public class Hangman
 		}
 
 		printGameState(guessedWord, mistakes);
-		if (mistakes == MAX_MISTAKES)
+		if (mistakes == Mistakes)
 		{
 			System.out.println("You lost! The word was: " + word);
 		}
@@ -168,8 +157,8 @@ public class Hangman
 	private static void printGameState(String guessedWord, int mistakes)
 	{
 		System.out.println();
-		System.out.println(DRAWINGS[mistakes]);
+		System.out.println(Drawings[mistakes]);
 		System.out.println("Word: " + guessedWord);
-		System.out.println("Mistakes remaining: " + (MAX_MISTAKES - mistakes));
+		System.out.println("Mistakes remaining: " + (Mistakes - mistakes));
 	}
 }
