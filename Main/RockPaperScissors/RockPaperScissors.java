@@ -482,7 +482,7 @@ public class RockPaperScissors {
         }
         else 
         {
-            // Both inputs are validated before the round.
+            
         }
 
         
