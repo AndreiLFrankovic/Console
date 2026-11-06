@@ -80,7 +80,8 @@ public class RockPaperScissors {
     
     public static void Menu( )
     {
-         
+         while (true)
+         {
    
         
         System.out.println("Welcome to Rock Paper Scissors!");
@@ -100,7 +101,7 @@ public class RockPaperScissors {
         {
             PlayGame();
            
-            Menu();
+          
         } 
         else if (choice == 2) 
         {
@@ -112,7 +113,7 @@ public class RockPaperScissors {
 
              
             }
-            Menu();
+  
         } 
         else if (choice == 7) 
         {
@@ -127,18 +128,17 @@ public class RockPaperScissors {
                 player1.compscore = 0;
                 player1.simplayer = 0;
                 System.out.println("Scores have been reset.");
-                Menu();
-
+            
             } 
             else if (resetChoice.equalsIgnoreCase("no")) 
             {
                 System.out.println("Scores have not been reset.");
-                Menu();
+              
             } 
             else 
             {
                 System.out.println("Invalid input. Scores have not been reset.");
-                Menu();
+          
             }
       
             
@@ -146,7 +146,7 @@ public class RockPaperScissors {
         else if (choice == 3)
         {
             PlayGameRPSC();
-            Menu();
+         
 
         }
         else if (choice == 4)
@@ -157,7 +157,6 @@ public class RockPaperScissors {
             {
                 PlayGameRPSC();
             }
-            Menu();
         }
         else if (choice == 6)
         {
@@ -188,7 +187,7 @@ public class RockPaperScissors {
             String returnToMenu = checking.next();
             if (returnToMenu.equalsIgnoreCase("yes"))
             {
-                Menu();
+        
             }
             else if (returnToMenu.equalsIgnoreCase("no"))
             {
@@ -199,7 +198,7 @@ public class RockPaperScissors {
                 
                 
                     System.out.println("Invalid input.");
-                    Menu();
+            
                 
                 
             
@@ -220,7 +219,7 @@ public class RockPaperScissors {
             String returnToMenu = checking.next();
             if (returnToMenu.equalsIgnoreCase("yes"))
             {
-                Menu();
+              
             }
             else if (returnToMenu.equalsIgnoreCase("no"))
             {
@@ -235,9 +234,9 @@ public class RockPaperScissors {
         else 
         {
             System.out.println("Invalid choice. Please try again.");
-            Menu();
+        
         }
-       
+    }
 
     }   
 
@@ -416,8 +415,8 @@ public class RockPaperScissors {
             System.out.println("Player 2 chose Paper");
             DrawPaperBasic();
             System.out.println("It's a tie!");
-            player1.score++;
-            System.out.println("Ties: " + player1.score);
+            player1.ties++;
+            System.out.println("Ties: " + player1.ties);
             System.out.println("Computer Wins: " + player1.compscore);
             System.out.println("Player Wins: " + player1.score);
              System.out.println("Player 2 Wins: " + player2.score);

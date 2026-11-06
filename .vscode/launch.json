@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "HangmanReal",
+            "request": "launch",
+            "mainClass": "Hangman.HangmanReal",
+            "projectName": "Console_37b04a3c"
+        },
+        {
+            "type": "java",
             "name": "Current File",
             "request": "launch",
             "mainClass": "${file}"
