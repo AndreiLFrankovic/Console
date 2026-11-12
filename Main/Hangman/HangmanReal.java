@@ -1,10 +1,17 @@
 
 package Hangman;
+<<<<<<< HEAD
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
+=======
+
+public class HangmanReal {
+    public static void main(String[] args)
+    {
+>>>>>>> parent of d5dee97 (Hangman newer version)
 
 public class HangmanReal {
   
@@ -49,6 +56,7 @@ public class HangmanReal {
 
         return new File("words.txt");
     }
+<<<<<<< HEAD
 
  
     private static String[] loadWords() {
@@ -166,4 +174,6 @@ public class HangmanReal {
         System.out.println("Word: " + guessedWord);
         System.out.println("Mistakes remaining: " + (Mistakes - mistakes));
     }
+=======
+>>>>>>> parent of d5dee97 (Hangman newer version)
 }

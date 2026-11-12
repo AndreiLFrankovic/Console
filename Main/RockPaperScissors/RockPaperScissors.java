@@ -24,7 +24,7 @@ package RockPaperScissors;
 // How te scanner works Scanner rads
     //  static lets evertyhing use this Scanner
     // final makes it so it can be changed. 
-    // the list stores al of the data and it tracks the variabes andit will ten store the data and set the numers to 0
+    // the list stores al of the data and it tracks the variabes andit will ten store the data and set the numers to 0.
 import java.util.ArrayList;
 import java.util.Scanner;
 public class RockPaperScissors {
