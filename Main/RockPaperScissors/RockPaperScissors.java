@@ -10,6 +10,13 @@ package RockPaperScissors;
  //has all of these opions for one rond or mltiple rounds, resetting scores,
  //help, and vieing score. Text-art draings of rock, aper, and scissrs are printed.
 
+
+ // I think i fixed the recrusion by having it go through a for loop
+
+ 
+ //change to avoid recursion error was by ending each round cleanly by returning to the menu
+ // loop and repeating the game code in the loop for multiple rounds.
+ // This keeps the program from endlessly recursoning;.
  
  // How it Wrks
 // The menu lets you choose a simulation, play against the computer, play with
@@ -31,7 +38,7 @@ public class RockPaperScissors {
     
     private static final Scanner checking = new Scanner(System.in);
     
-    
+   
   
     public static class PlayerData
       {
@@ -71,10 +78,9 @@ public class RockPaperScissors {
     static PlayerData player2 = new PlayerData("Player 2");
     public static void main(String[] args) {
 
-
         DrawRockBasic();
-        DrawScissorsBasic();
         DrawPaperBasic();
+        DrawScissorsBasic();
         Menu();
      }
     
@@ -96,7 +102,22 @@ public class RockPaperScissors {
         System.out.println("Press 9 for stats");
 
 
-        int choice = checking.nextInt();
+        int choice;
+        try
+        {
+            choice = Integer.parseInt(checking.next());
+        }
+        catch (NumberFormatException bad)
+        {
+            System.out.println("Invalid input. Please enter a number between 1 and 9.");
+            continue;
+        }
+        boolean askReturnToMenu = false;
+        if (choice < 1 || choice > 9)
+        {
+            System.out.println("Invalid input. Please enter a number between 1 and 9.");
+            continue;
+        }
         if (choice == 1) 
         {
             PlayGame();
@@ -105,13 +126,10 @@ public class RockPaperScissors {
         } 
         else if (choice == 2) 
         {
-            System.out.println("How many rounds would you like to play?");
-            int rounds = checking.nextInt();
+            int rounds = readPositiveRoundCount();
             for (int i = 0; i < rounds; i++) 
             {
                 PlayGame();
-
-             
             }
   
         } 
@@ -122,11 +140,7 @@ public class RockPaperScissors {
             String resetChoice = checking.next();
             if (resetChoice.equalsIgnoreCase("yes")) 
             {
-                player1.score = 0;
-                player2.score = 0;
-                player1.ties = 0;
-                player1.compscore = 0;
-                player1.simplayer = 0;
+                Reset();
                 System.out.println("Scores have been reset.");
             
             } 
@@ -151,8 +165,7 @@ public class RockPaperScissors {
         }
         else if (choice == 4)
         {
-            System.out.println("How many rounds would you like to play?");
-            int rounds = checking.nextInt();
+            int rounds = readPositiveRoundCount();
             for (int i = 0; i < rounds; i++) 
             {
                 PlayGameRPSC();
@@ -160,18 +173,17 @@ public class RockPaperScissors {
         }
         else if (choice == 6)
         {
-            System.out.println("How many rounds would you like to play?");
-            int rounds = checking.nextInt();
+            int rounds = readPositiveRoundCount();
             for (int i = 0; i < rounds; i++) 
             {
                 PlayGame1v1();
             }
-            ReturnToMenuPrompt();
+            askReturnToMenu = true;
         }
         else if (choice == 5)
         {
             PlayGame1v1();
-            ReturnToMenuPrompt();
+            askReturnToMenu = true;
         }
         else if (choice == 8)
         {
@@ -236,26 +248,67 @@ public class RockPaperScissors {
             System.out.println("Invalid choice. Please try again.");
         
         }
+        if (askReturnToMenu)
+        {
+            String answer;
+            do
+            {
+                System.out.println("Return to menu? (yes/no)");
+                answer = checking.next();
+                if (!answer.equalsIgnoreCase("yes") && !answer.equalsIgnoreCase("no"))
+                {
+                    System.out.println("Invalid input. Please enter yes or no.");
+                }
+            }
+            while (!answer.equalsIgnoreCase("yes") && !answer.equalsIgnoreCase("no"));
+            if (answer.equalsIgnoreCase("yes"))
+            {
+                continue;
+            }
+            else
+            {
+                return;
+            }
+        }
     }
 
-    }   
+    }
 
-    private static void ReturnToMenuPrompt()
+    public static void Reset()
+    {
+        player1.score = 0;
+        player1.wins = 0;
+        player1.losses = 0;
+        player1.ties = 0;
+        player1.compscore = 0;
+        player1.simplayer = 0;
+
+        player2.score = 0;
+        player2.wins = 0;
+        player2.losses = 0;
+        player2.ties = 0;
+        player2.compscore = 0;
+        player2.simplayer = 0;
+    }
+
+    public static int readPositiveRoundCount()
     {
         while (true)
         {
-            System.out.println("Return to menu? (yes/no)");
-            String answer = checking.next();
-            if (answer.equalsIgnoreCase("yes"))
+            System.out.println("How many rounds would you like to play?");
+            try
             {
-                Menu();
-                return;
+                int rounds = Integer.parseInt(checking.next());
+                if (rounds >= 1)
+                {
+                    return rounds;
+                }
+                System.out.println("Invalid input. Please enter a whole number greater than 0.");
             }
-            if (answer.equalsIgnoreCase("no"))
+            catch (NumberFormatException bad)
             {
-                return;
+                System.out.println("Invalid input. Please enter a whole number greater than 0.");
             }
-            System.out.println("Invalid input. Please enter yes or no.");
         }
     }
 
@@ -406,6 +459,7 @@ public class RockPaperScissors {
             System.out.println("Ties: " + player1.ties);
             System.out.println("Computer Wins: " + player1.compscore);
             System.out.println("Player Wins: " + player1.score);
+            System.out.println("Player 2 Wins: " + player2.score);
         }
         else if (P1word.equalsIgnoreCase("paper") && P2word.equalsIgnoreCase("paper")) 
         {
@@ -479,12 +533,7 @@ public class RockPaperScissors {
             System.out.println("Player Wins: " + player1.score);
              System.out.println("Player 2 Wins: " + player2.score);
         }
-        else 
-        {
-            
-        }
 
-        
 
 
 
