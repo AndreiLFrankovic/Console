@@ -71,7 +71,6 @@ public class RockPaperScissors {
     public static class PlayerData {
 
         String soemthing;
-
         int score;
 
         int wins;
