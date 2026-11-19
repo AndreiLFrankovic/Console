@@ -131,7 +131,6 @@ public class RockPaperScissors {
                 System.out.println("Invalid input. Please enter a number between 1 and 10.");
                 continue;
             }
-
             if (choice < 1 || choice > 10) {
                 System.out.println("Invalid input. Please enter a number between 1 and 10.");
                 continue;
