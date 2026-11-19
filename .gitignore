@@ -1,0 +1,11 @@
+# Java compiled output
+*.class
+
+# Common Java build output
+target/
+build/
+out/
+bin/
+
+# Gradle
+.gradle/

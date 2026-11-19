@@ -17,7 +17,8 @@ public static void main(String[] args) {
             "banana",
             "chair",
             "horse",
-            "planet"
+            "planet",
+            "river"
         };
         Random random = new Random();
         int wordIndex = random.nextInt(words.length);
